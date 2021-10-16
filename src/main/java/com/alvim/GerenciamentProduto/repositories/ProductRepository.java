@@ -6,25 +6,23 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.alvim.GerenciamentProduto.entities.Product;
 
-@Component
-public class ProductRepository{
-	
-	private static Map<Long, Product> map = new HashMap<>();
-	
-	public static void save (Product obj) {
-		map.put(obj.getId(), obj);
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Long>{
+
+	List<Product> findAll();
+
+	Object findById(Long id);
+
+	static void save(Product p1) {
+		// TODO Auto-generated method stub
+		
 	}
 	
-	public Product findById(Long id) {
-		return map.get(id);
-	}
 	
-	public List<Product> findAll(){
-		return new ArrayList<Product>(map.values());
-	}
 	
 	
 	
